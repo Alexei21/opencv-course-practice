@@ -35,24 +35,24 @@ void pipeline_lab1()
     sum[1] = Mat(image.rows + 1, image.cols + 1, CV_64F);
     sum[2] = Mat(image.rows + 1, image.cols + 1, CV_64F);
 
-    cvNamedWindow("input");
-    cvNamedWindow("current");
+    namedWindow("input");
+    namedWindow("current");
     
     imshow("input", image);
 
     //pipeline
         cvtColor(image, gray, CV_RGB2GRAY);
         imshow("current", gray);
-        cvWaitKey(0);
+        waitKey(0);
 
         Canny(gray, thresholds, 100, 200);
         bitwise_not(thresholds, thresholds_invert);
         imshow("current", thresholds_invert);
-        cvWaitKey(0);
+        waitKey(0);
 
         distanceTransform(thresholds_invert, mat_of_distances, CV_DIST_L2, 3);
         imshow("current", mat_of_distances);
-        cvWaitKey(0);
+        waitKey(0);
 
         for (int k = 0; k < 3; k++)
         {
@@ -87,10 +87,10 @@ void pipeline_lab1()
             }
 
         imshow("current", distances);
-        cvWaitKey(0);
+        waitKey(0);
 
     //free
-    cvDestroyAllWindows();
+    destroyAllWindows();
 
     return;
 }
